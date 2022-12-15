@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/pehwish/nwitter.git/static/js/main.64663f61.chunk.js",
-    "main.js.map": "/pehwish/nwitter.git/static/js/main.64663f61.chunk.js.map",
-    "runtime-main.js": "/pehwish/nwitter.git/static/js/runtime-main.2e3dd418.js",
-    "runtime-main.js.map": "/pehwish/nwitter.git/static/js/runtime-main.2e3dd418.js.map",
-    "static/js/2.5f2f2896.chunk.js": "/pehwish/nwitter.git/static/js/2.5f2f2896.chunk.js",
-    "static/js/2.5f2f2896.chunk.js.map": "/pehwish/nwitter.git/static/js/2.5f2f2896.chunk.js.map",
-    "index.html": "/pehwish/nwitter.git/index.html",
-    "precache-manifest.c1ac23941bb7f09de3c37235dce88271.js": "/pehwish/nwitter.git/precache-manifest.c1ac23941bb7f09de3c37235dce88271.js",
-    "service-worker.js": "/pehwish/nwitter.git/service-worker.js",
-    "static/js/2.5f2f2896.chunk.js.LICENSE.txt": "/pehwish/nwitter.git/static/js/2.5f2f2896.chunk.js.LICENSE.txt",
-    "static/js/main.64663f61.chunk.js.LICENSE.txt": "/pehwish/nwitter.git/static/js/main.64663f61.chunk.js.LICENSE.txt"
+    "main.js": "/nwitter/static/js/main.64663f61.chunk.js",
+    "main.js.map": "/nwitter/static/js/main.64663f61.chunk.js.map",
+    "runtime-main.js": "/nwitter/static/js/runtime-main.3a662223.js",
+    "runtime-main.js.map": "/nwitter/static/js/runtime-main.3a662223.js.map",
+    "static/js/2.a8d4a5ea.chunk.js": "/nwitter/static/js/2.a8d4a5ea.chunk.js",
+    "static/js/2.a8d4a5ea.chunk.js.map": "/nwitter/static/js/2.a8d4a5ea.chunk.js.map",
+    "index.html": "/nwitter/index.html",
+    "precache-manifest.0053e8e8e19b409e011b605141d64626.js": "/nwitter/precache-manifest.0053e8e8e19b409e011b605141d64626.js",
+    "service-worker.js": "/nwitter/service-worker.js",
+    "static/js/2.a8d4a5ea.chunk.js.LICENSE.txt": "/nwitter/static/js/2.a8d4a5ea.chunk.js.LICENSE.txt",
+    "static/js/main.64663f61.chunk.js.LICENSE.txt": "/nwitter/static/js/main.64663f61.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2e3dd418.js",
-    "static/js/2.5f2f2896.chunk.js",
+    "static/js/runtime-main.3a662223.js",
+    "static/js/2.a8d4a5ea.chunk.js",
     "static/js/main.64663f61.chunk.js"
   ]
 }
