@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { styled } from '../stitches.config.ts';
+
+const Nav = styled('nav', {
+  width: 88
+})
+
 
 const Navigation = ({ userObj }) => (
-  <nav>
+  <Nav>
     <ul>
       <li>
         <Link to='/'>Home</Link>
@@ -11,6 +17,6 @@ const Navigation = ({ userObj }) => (
         <Link to='/profile'>{userObj.displayName}의 Profile</Link>
       </li>
     </ul>
-  </nav>
+  </Nav>
 );
 export default Navigation;

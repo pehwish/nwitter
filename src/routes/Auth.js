@@ -1,6 +1,7 @@
 import React from 'react';
 import { authService, firebaseInstance } from 'fbase';
 import AuthForm from 'components/AuthForm';
+import { Button } from 'components/Buttons'
 
 const Auth = () => {
   const onSocialClick = async (event) => {
@@ -21,6 +22,7 @@ const Auth = () => {
     <div>
       <AuthForm />
       <div>
+        <Button>뭔가 나오나..</Button>
         <button onClick={onSocialClick} name='google'>
           Continue with Google
         </button>

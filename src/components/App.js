@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AppRouter from 'components/Router';
 import { authService } from 'fbase';
+import { styled } from '../stitches.config.ts';
+
+const Wrapper = styled('div', {
+  display: 'flex',
+  height:'100vh'
+})
 
 function App() {
   const [init, setInit] = useState(false);
@@ -32,7 +38,7 @@ function App() {
   };
 
   return (
-    <>
+    <Wrapper>
       {init ? (
         <AppRouter
           refreshUser={refreshUser}
@@ -43,7 +49,7 @@ function App() {
         'Initializing...'
       )}
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
-    </>
+    </Wrapper>
   );
 }
 

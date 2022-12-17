@@ -3,6 +3,19 @@ import NweetFactory from 'components/NweetFactory';
 import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 
+import { styled } from '../stitches.config.ts';
+
+
+const Main = styled('main', {
+  flex: 1,
+  borderColor:'rgb(239, 243, 244)',
+  borderLeftWidth: 1,
+  borderRightWidth: 1,
+  borderStyle: 'solid',
+  maxWidth:600
+})
+
+
 const Home = ({ userObj }) => {
   const [nweets, setNweets] = useState([]);
 
@@ -18,7 +31,7 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <Main>
       <NweetFactory userObj={userObj} />
 
       <div>
@@ -30,7 +43,7 @@ const Home = ({ userObj }) => {
           />
         ))}
       </div>
-    </div>
+    </Main>
   );
 };
 export default Home;
