@@ -8,7 +8,7 @@ import FileButton from 'components/FileButton';
 import { Button } from 'components/Buttons';
 import ImagesBox from 'components/ImagesBox';
 import { styled } from '../stitches.config';
-import { userObjType } from 'types';
+import { userType } from 'types';
 
 const NweetForm = styled('form', {
   display: 'flex',
@@ -42,7 +42,7 @@ type onSubmitData = {
 };
 
 interface NweetFactoryProps {
-  userObj?: userObjType;
+  userObj?: userType;
 }
 
 const NweetFactory = ({ userObj }: NweetFactoryProps) => {

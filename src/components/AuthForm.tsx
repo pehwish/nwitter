@@ -1,40 +1,43 @@
 import { authService } from 'fbase';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { AuthFormData, StoreType } from 'types';
+import useStore from 'store';
+interface AuthFormProps { 
+  isNewAccount?: boolean;
+}
 
-type onSubmitData = {
-  email: string;
-  password: string;
-};
 
-const AuthForm = () => {
+const AuthForm = ({ isNewAccount = false}:AuthFormProps) => {
   const {
     register,
     handleSubmit,
     setValue,
     formState: { isDirty, isValid, errors },
-  } = useForm<onSubmitData>();
+  } = useForm<AuthFormData>();
+  const { toggleIsLogin }:StoreType = useStore();
 
-  const [newAccount, setNewAccount] = useState(true);
 
   const [error, setError] = useState('');
 
-  const onSubmit = async (data: onSubmitData) => {
+  const onSubmit = async (data: AuthFormData) => {
     console.log(data);
-    // try {
-    //   let data;
-    //   if (newAccount) {
-    //     data = await authService.createUserWithEmailAndPassword(email, password);
-    //   } else {
-    //     data = await authService.signInWithEmailAndPassword(email, password);
-    //   }
-    //   console.log(data);
-    // } catch (e) {
-    //   setError(e.message);
-    // }
+    const {email, password } = data;
+    try {
+      let data;
+      if (isNewAccount) {
+        data = await authService.createUserWithEmailAndPassword(email, password);
+      } else {
+        data = await authService.signInWithEmailAndPassword(email, password);
+      }
+      console.log(data);
+      toggleIsLogin(true);
+    } catch (e: any) {
+      //TODO 타입 수정
+      setError(e.message);
+    }
   };
 
-  const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,6 +50,7 @@ const AuthForm = () => {
 
       <input
         {...register('password', { required: true })}
+        type="password"
         aria-invalid={errors.password ? 'true' : 'false'}
       />
       {errors.password && <p role="alert">{errors.password?.message}</p>}
@@ -54,10 +58,10 @@ const AuthForm = () => {
       <input
         type="submit"
         disabled={!isDirty && !isValid}
-        value={newAccount ? 'Create Account' : 'Sign In'}
+        value={isNewAccount ? '회원가입' : '로그인'}
       />
       {error}
-      <span onClick={toggleAccount}>{newAccount ? 'Sign In' : 'Create Account'}</span>
+      
     </form>
   );
 };

@@ -1,16 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { authService } from 'fbase';
-import { userObjType } from 'types';
+import { StoreType } from 'types';
+import useStore from 'store';
 
-interface ProfileProps {
-  userObj: userObjType;
-  refreshUser: () => void;
-}
-
-const Profile = ({ refreshUser, userObj }: ProfileProps) => {
+const Profile = () => {
+  const { userObj, refreshUser }: StoreType = useStore();
   const history = useHistory();
-  const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+  const [newDisplayName, setNewDisplayName] = useState(userObj?.displayName || '');
 
   const onLogOutClick = () => {
     authService.signOut();

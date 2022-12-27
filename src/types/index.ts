@@ -1,4 +1,4 @@
-export interface userObjType {
+export interface userType {
   displayName?: string;
   photoURL?: string;
   uid: string;
@@ -15,9 +15,16 @@ export interface NweetType {
   attachmentUrl: string;
 }
 
+export interface AuthFormData {
+  email: string;
+  password: string;
+};
+
+
 export interface StoreType {
-  isLogin: boolean;
-  toggleIsLogin: () => void;
-  isSignUpModal: boolean;
-  toggleIsSignUpModal: () => void;
+  isLoggedIn: boolean;
+  toggleIsLogin: (isLogin: boolean) => void;  
+  userObj: userType | null;
+  refreshUser: () => void;
+  onAuthState: () => void;
 }

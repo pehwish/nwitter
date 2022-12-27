@@ -1,8 +1,9 @@
 import { TwitterLogoIcon } from '@radix-ui/react-icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { userObjType } from 'types';
+import { StoreType } from 'types';
 import { styled } from '../stitches.config';
+import useStore from 'store';
 
 const Nav = styled('nav', {
   width: 88,
@@ -21,12 +22,11 @@ const Nav = styled('nav', {
   },
 });
 
-interface NavigationProps {
-  userObj: userObjType | null;
-}
 
-const Navigation = ({ userObj }: NavigationProps) => (
-  <Nav>
+const Navigation = () => {
+  const { userObj }: StoreType = useStore();
+  
+  return ( <Nav>
     <h1>
       <Link to="/">
         <TwitterLogoIcon />
@@ -42,6 +42,6 @@ const Navigation = ({ userObj }: NavigationProps) => (
         </li>
       )}
     </ul>
-  </Nav>
-);
+  </Nav>)
+};
 export default Navigation;

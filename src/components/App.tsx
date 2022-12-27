@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppRouter from 'components/Router';
 import { authService } from 'fbase';
 import { styled } from '../stitches.config';
-import { StoreType, userObjType } from 'types';
+import { StoreType } from 'types';
 import useStore from 'store';
 
 const Wrapper = styled('div', {
@@ -16,46 +16,17 @@ const Wrapper = styled('div', {
 });
 
 function App() {
-  const [init, setInit] = useState(false);
-  const [userObj, setUserObj] = useState<userObjType | null>(null);
-  const { isSignUpModal }:StoreType = useStore(state =>state);
+  const { onAuthState }:StoreType = useStore((state) => state);
 
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
-        setUserObj({
-          displayName: user.displayName || '',
-          photoURL: user.photoURL || '',
-          uid: user.uid,
-          updateProfile: (args) => user.updateProfile(args),
-        });
-      } else {
-        setUserObj(null);
-      }
-      setInit(true);
-    });
-  }, []);
-
-  const refreshUser = () => {
-    const user = authService.currentUser;
-    if (user) {
-      setUserObj({
-        displayName: user.displayName || '',
-        photoURL: user.photoURL || '',
-        uid: user.uid,
-        updateProfile: (args) => user.updateProfile(args),
-      });
-    }
-  };
+  useEffect(() => { 
+    onAuthState();
+   
+  },[])
+  
 
   return (
     <Wrapper>
-      {init ? (
-        <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />
-      ) : (
-        'Initializing...'
-      )}
-      {isSignUpModal && 'signupmodal..'}
+      <AppRouter />
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </Wrapper>
   );

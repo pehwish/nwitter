@@ -3,26 +3,23 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from 'routes/Home';
 import Profile from 'routes/Profile';
 import Navigation from 'components/Navigation';
-import { userObjType } from 'types';
+import { StoreType } from 'types';
+import useStore from 'store';
 import BottomBar from './BottomBar';
 
-interface AppRouterProps {
-  refreshUser: () => any;
-  isLoggedIn: boolean;
-  userObj: userObjType | null;
-}
+const AppRouter = () => {
+  const { userObj, isLoggedIn }: StoreType = useStore();
 
-const AppRouter = ({ refreshUser, isLoggedIn, userObj }: AppRouterProps) => {
   return (
     <Router>
-      <Navigation userObj={userObj} />
+      <Navigation />
       <Switch>
         <Route exact path="/">
-          <Home userObj={userObj} />
+          <Home />
         </Route>
         {userObj && (
           <Route exact path="/profile">
-            <Profile refreshUser={refreshUser} userObj={userObj} />
+            <Profile />
           </Route>
         )}
       </Switch>

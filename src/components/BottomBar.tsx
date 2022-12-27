@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from './Buttons';
 import { styled } from '../stitches.config';
 import { Box } from './Box';
-import useStore from 'store';
 import { StoreType } from 'types';
+import SignInModal from './SignInModal';
 
 const BottomBarBox = styled(Box, {
   bc: '$blue',
@@ -34,12 +34,7 @@ const BottomBarBox = styled(Box, {
 });
 
 const BottomBar = () => {
-  const { toggleIsSignUpModal }: StoreType = useStore((state) => state);
-
-  const onClickSign = () => {
-    console.log('onClickSign');
-    toggleIsSignUpModal();
-  };
+  
 
   return (
     <BottomBarBox>
@@ -49,7 +44,7 @@ const BottomBar = () => {
           <p>트위터를 사용하면 가장 먼저 알게 됩니다.</p>
         </div>
         <div className="bottom-bar__buttons">
-          <Button onClick={onClickSign}>로그인</Button>
+          <SignInModal />
           <Button>가입하기</Button>
         </div>
       </div>

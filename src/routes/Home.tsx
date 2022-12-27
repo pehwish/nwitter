@@ -2,8 +2,8 @@ import Nweet from 'components/Nweet';
 import NweetFactory from 'components/NweetFactory';
 import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
-import { NweetType, userObjType } from 'types';
-
+import { NweetType, StoreType } from 'types';
+import useStore from 'store';
 import { styled } from '../stitches.config';
 
 const Main = styled('main', {
@@ -20,15 +20,12 @@ const Main = styled('main', {
   },
 });
 
-interface HomeProps {
-  userObj: userObjType | null;
-}
-
-const Home = ({ userObj }: HomeProps) => {
+const Home = () => {
+  const { userObj }: StoreType = useStore();
   const [nweets, setNweets] = useState<NweetType[]>([]);
 
   useEffect(() => {
-    dbService.collection('nweets').onSnapshot((snapshot) => {
+    dbService.collection('nweets').orderBy('createdAt', "desc").onSnapshot((snapshot) => {
       const nweetArray = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
