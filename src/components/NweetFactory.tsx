@@ -2,48 +2,12 @@ import { dbService, storageService } from 'fbase';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
-
 import { Avatar } from 'components/Avatar';
 import FileButton from 'components/FileButton';
-import { Button } from 'components/Buttons';
 import ImagesBox from 'components/ImagesBox';
-import { styled } from '../stitches.config';
-import { userType } from 'types';
+import { NweetFactoryProps, onSubmitData } from 'types';
+import { Button, NweetForm, NweetInput } from 'styles';
 
-const NweetForm = styled('form', {
-  display: 'flex',
-  fd: 'row',
-  mx: 16,
-  py: 4,
-  '.nweet-from__aligner': {
-    display: 'flex',
-    flex: 1,
-    fd: 'column',
-    ml: 16,
-  },
-  '.nweet-from__align': {
-    borderTop: '1px solid rgb(239, 243, 244)',
-    display: 'flex',
-    flex: 1,
-    fd: 'row',
-    jc: 'space-between',
-    py: 12,
-    mt: 12,
-  },
-});
-
-const NweetInput = styled('input', {
-  border: 0,
-  display: 'flex',
-  fontSize: '$7',
-});
-type onSubmitData = {
-  nweet: string;
-};
-
-interface NweetFactoryProps {
-  userObj?: userType;
-}
 
 const NweetFactory = ({ userObj }: NweetFactoryProps) => {
   const {

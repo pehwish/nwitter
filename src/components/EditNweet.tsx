@@ -1,11 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { dbService } from 'fbase';
+import { EditNweetProps } from 'types';
 
-interface EditNweetProps {
-  id: string;
-  originText: string;
-  toggleEditing: () => void;
-}
 
 const EditNweet = ({ id, originText, toggleEditing }: EditNweetProps) => {
   const [newNweet, setNewNweet] = useState(originText);

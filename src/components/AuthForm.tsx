@@ -1,36 +1,26 @@
 import { authService } from 'fbase';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AuthFormData, StoreType } from 'types';
+import { AuthFormData, StoreType, AuthFormProps } from 'types';
 import useStore from 'store';
-interface AuthFormProps { 
-  isNewAccount?: boolean;
-}
-
 
 const AuthForm = ({ isNewAccount = false}:AuthFormProps) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { isDirty, isValid, errors },
   } = useForm<AuthFormData>();
   const { toggleIsLogin }:StoreType = useStore();
-
-
   const [error, setError] = useState('');
 
-  const onSubmit = async (data: AuthFormData) => {
-    console.log(data);
+  const onSubmit = async (data: AuthFormData) => {    
     const {email, password } = data;
-    try {
-      let data;
+    try {      
       if (isNewAccount) {
-        data = await authService.createUserWithEmailAndPassword(email, password);
+        await authService.createUserWithEmailAndPassword(email, password);
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
-      }
-      console.log(data);
+        await authService.signInWithEmailAndPassword(email, password);
+      }      
       toggleIsLogin(true);
     } catch (e: any) {
       //TODO 타입 수정
@@ -55,11 +45,12 @@ const AuthForm = ({ isNewAccount = false}:AuthFormProps) => {
       />
       {errors.password && <p role="alert">{errors.password?.message}</p>}
 
-      <input
+      <button
         type="submit"
-        disabled={!isDirty && !isValid}
-        value={isNewAccount ? '회원가입' : '로그인'}
-      />
+        disabled={!isDirty && !isValid}        
+      >
+        {isNewAccount ? '회원가입' : '로그인'}
+      </button>
       {error}
       
     </form>

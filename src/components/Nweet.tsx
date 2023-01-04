@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { NweetType } from 'types';
+import { NweetProps } from 'types';
 import EditNweet from './EditNweet';
 import NweetItem from './NweetItem';
 
-interface NweetProps {
-  nweetObj: NweetType;
-  isOwner: boolean;
-}
 
 const Nweet = ({ nweetObj, isOwner = false }: NweetProps) => {
   const [editing, setEditing] = useState(false);

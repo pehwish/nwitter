@@ -12,6 +12,7 @@ const store = create<StoreType>()(
       onAuthState: () => {
         authService.onAuthStateChanged((user) => {
           if (user) {  
+            console.log('user?!!!!!!!!!!!!!!');
             set(()=> ({
               userObj: {
                 displayName: user.displayName || '',

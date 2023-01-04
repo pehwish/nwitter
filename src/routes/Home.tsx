@@ -4,21 +4,8 @@ import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 import { NweetType, StoreType } from 'types';
 import useStore from 'store';
-import { styled } from '../stitches.config';
+import { Main } from 'styles';
 
-const Main = styled('main', {
-  flex: 1,
-  borderLeft: '1px solid rgb(239, 243, 244)',
-  borderRight: '1px solid rgb(239, 243, 244)',
-  maxWidth: 600,
-  '.main-header': {
-    px: 16,
-  },
-  '.main-header__text': {
-    fontSize: '$6',
-    py: 16,
-  },
-});
 
 const Home = () => {
   const { userObj }: StoreType = useStore();

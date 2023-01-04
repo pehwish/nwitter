@@ -1,47 +1,38 @@
-import { TwitterLogoIcon } from '@radix-ui/react-icons';
+import { HomeIcon, PersonIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StoreType } from 'types';
-import { styled } from '../stitches.config';
 import useStore from 'store';
-
-const Nav = styled('nav', {
-  width: 88,
-  '@bp3': {
-    width: 275,
-  },
-  h1: {
-    ai: 'center',
-    display: 'flex',
-    height: 53,
-    svg: {
-      color: '$blue',
-      height: 30,
-      width: 30,
-    },
-  },
-});
+import { Nav } from 'styles';
 
 
 const Navigation = () => {
   const { userObj }: StoreType = useStore();
-  
-  return ( <Nav>
-    <h1>
-      <Link to="/">
-        <TwitterLogoIcon />
-      </Link>
-    </h1>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      {userObj && (
+
+  return (
+    <Nav>
+      <h1>
+        <Link to="/">
+          <TwitterLogoIcon />
+        </Link>
+      </h1>
+      <ul>
         <li>
-          <Link to="/profile">{userObj.displayName}의 Profile</Link>
+          <Link to="/" className='nav-link'>
+            <HomeIcon />
+            <span>Home</span>
+          </Link>
         </li>
-      )}
-    </ul>
-  </Nav>)
+        {userObj && (
+          <li>
+            <Link to="/myPage" className='nav-link'>
+              <PersonIcon />
+              <span>프로필</span>
+            </Link>
+          </li>
+        )}
+      </ul>
+    </Nav>
+  )
 };
 export default Navigation;

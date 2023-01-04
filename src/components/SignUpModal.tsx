@@ -5,21 +5,21 @@ import { Trigger} from '@radix-ui/react-dialog';
 import SocialAuth from './SocialAuth';
 import { Button } from 'styles';
 
-const SignInModal = () => {
+const SignUpModal = () => {
   return (
       <Modal
-        title='트위터에 로그인하기'
+        title='지금 트위터에 가입하세요'
         button={
           <Trigger asChild>
-            <Button color='clear'>로그인</Button>
+            <Button color="white">가입하기</Button>
           </Trigger>
         }        
     >
       <SocialAuth />
       또는..
-      <AuthForm />
+      <AuthForm isNewAccount />
       </Modal>
   )
 }
 
-export default SignInModal;
+export default SignUpModal;
