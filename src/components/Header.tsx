@@ -5,7 +5,7 @@ import useStore from 'store';
 import { useHistory } from 'react-router-dom';
 import { HeaderWrap } from 'styles';
 
-const Header = ({ children}:HeaderProps) => {
+const Header = ({ children, nwitterCnt = 0 }:HeaderProps) => {
   const { userObj }: StoreType = useStore();
   const history = useHistory();
 
@@ -21,6 +21,7 @@ const Header = ({ children}:HeaderProps) => {
         </button>
         <h2 className='header__display-name'>
           {userObj?.displayName || ''}       
+          {nwitterCnt > 0 && <span className='header__nwitter'> {nwitterCnt} 트윗</span>}
         </h2>
       </div>        
       {children}

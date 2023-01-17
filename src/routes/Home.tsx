@@ -27,7 +27,7 @@ const Home = () => {
       <div className="main-header">
         <h2 className="main-header__text">홈</h2>
       </div>
-      {userObj && <NweetFactory userObj={userObj} />}
+      { userObj && <NweetFactory /> }     
 
       <div>
         {nweets.map((nweet) => (

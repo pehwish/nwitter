@@ -5,7 +5,7 @@ import Navigation from 'components/Navigation';
 import { StoreType } from 'types';
 import useStore from 'store';
 import BottomBar from './BottomBar';
-import { Auth, Home, Profile } from 'routes';
+import { Auth, Home } from 'routes';
 
 const AppRouter = () => {
   const { userObj, isLoggedIn }: StoreType = useStore();
@@ -14,18 +14,13 @@ const AppRouter = () => {
     <Router>
       <Navigation />
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <Home />
         </Route>
         {userObj && (
-          <>
-            <Route exact path="/myPage">
-              <Auth />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-          </>
+          <Route exact path='/myPage'>
+            <Auth />
+          </Route>
         )}
       </Switch>
       {!isLoggedIn && <BottomBar />}

@@ -60,6 +60,10 @@ const StyledAvatar = styled(AvatarPrimitive.Root, {
         width: '$9',
         height: '$9',
       },
+      '7': {
+        width: '$10',
+        height: '$10',
+      },
     },
     variant: {
       hiContrast: {
@@ -218,6 +222,10 @@ const StyledAvatarFallback = styled(AvatarPrimitive.Fallback, {
       },
       '6': {
         fontSize: '$9',
+      },
+      '7': {
+        width: '$10',
+        height: '$10',
       },
     },
   },

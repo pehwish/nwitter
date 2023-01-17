@@ -1,18 +1,15 @@
-
-import {  Overlay, Content, Title, Close} from '@radix-ui/react-dialog';
+import { Overlay, Content, Title, Close } from '@radix-ui/react-dialog';
 import { styled } from '../stitches.config';
-
 
 export const Box = styled('div', {
   // Reset
   boxSizing: 'border-box',
 });
 
-
 export const Wrapper = styled('div', {
   display: 'flex',
   width: '100%',
-  minHeight:'100vh',
+  minHeight: '100vh',
   m: '0 auto',
   '@bp3': {
     width: 990,
@@ -45,8 +42,13 @@ export const BottomBarBox = styled(Box, {
       width: 990,
     },
   },
+  '.bottom-bar__buttons': {
+    button: {
+      ml: 12,
+      fontWeight:'bold'
+    }
+  }
 });
-
 
 export const Button = styled('button', {
   br: '$pill',
@@ -67,7 +69,7 @@ export const Button = styled('button', {
       clear: {
         color: '#fff',
         bc: 'transparent',
-        border:'1px solid #fff'
+        border: '1px solid #fff',
       },
       blue: {
         bc: '$blue',
@@ -93,6 +95,11 @@ export const Button = styled('button', {
         pl: '15px',
         pr: '15px',
       },
+      xlarge: {
+        width: '300px',
+        maxWidth: '400px',
+        height: '40px',
+      },
     },
   },
   defaultVariants: {
@@ -109,7 +116,7 @@ export const IconButton = styled(Button, {
   br: 30,
   '&:hover': {
     bc: '#E8F5FD',
-    borderColor:'#d2e3fc'
+    borderColor: '#d2e3fc',
   },
   svg: {
     height: 17,
@@ -117,7 +124,7 @@ export const IconButton = styled(Button, {
     '& + span': {
       marginLeft: '4px',
     },
-  },  
+  },
   variants: {
     color: {
       black: {
@@ -132,7 +139,7 @@ export const IconButton = styled(Button, {
       clear: {
         color: '#fff',
         bc: 'transparent',
-        border:'1px solid #fff'
+        border: '1px solid #fff',
       },
       blue: {
         bc: '$blue',
@@ -154,7 +161,7 @@ export const IconButton = styled(Button, {
       large: {
         width: '300px',
         maxWidth: '400px',
-        height:'40px'
+        height: '40px',
       },
     },
   },
@@ -213,18 +220,17 @@ export const ImgBox = styled(Box, {
   },
 });
 
-
 export const ModalDimmd = styled(Overlay, {
   bc: '$blackA9',
   position: 'fixed',
-  inset: 0,  
+  inset: 0,
 });
-
 
 export const ModalContent = styled(Content, {
   bc: 'white',
   borderRadius: '6px',
-  boxShadow: 'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+  boxShadow:
+    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
   position: 'fixed',
   top: '50%',
   left: '50%',
@@ -233,7 +239,7 @@ export const ModalContent = styled(Content, {
   maxWidth: '450px',
   maxHeight: '85vh',
   padding: '25px',
-  textAlign:'center'
+  textAlign: 'center',
 });
 
 export const ModalTitle = styled(Title, {
@@ -247,7 +253,7 @@ export const ModalTitle = styled(Title, {
     color: '$blue',
     height: 30,
     width: 30,
-  }
+  },
 });
 
 export const ModalBtnClose = styled(Close, {
@@ -258,12 +264,13 @@ export const ModalBtnClose = styled(Close, {
   br: '$round',
   '&:hover': {
     bc: 'rgba(15, 20, 25, 0.1)',
-    borderColor: '#d2e3fc'
+    borderColor: '#d2e3fc',
   },
 });
 
-
 export const Nav = styled('nav', {
+  display: 'flex',
+  fd:'column',
   width: 88,
   '@bp3': {
     width: 275,
@@ -281,25 +288,24 @@ export const Nav = styled('nav', {
   ul: {
     listStyle: 'none',
     p: 0,
-    m:0
+    m: 0,
   },
   '.nav-link': {
     ai: 'center',
-    color:'$blackA12',
+    color: '$blackA12',
     display: 'inline-flex',
     fontSize: '$6',
-    fontStyle:'normal',
-    textDecoration:'none',
+    fontStyle: 'normal',
+    textDecoration: 'none',
     p: 12,
     span: {
-      ml:20
+      ml: 20,
     },
     '&:hover': {
       bc: '$blackA5',
-      br:'$pill'
-    }
+      br: '$pill',
+    },
   },
-  
 });
 
 export const NweetForm = styled('form', {
@@ -341,6 +347,7 @@ export const NweetItemBox = styled('div', {
   },
   '.nweetitem__content': {
     ml: 12,
+    flex: 1,
   },
   '.nweetitem__header': {
     ai: 'center',
@@ -359,6 +366,9 @@ export const NweetItemBox = styled('div', {
   '.nweetitem__menu': {
     ml: 'auto',
     position: 'relative',
+    button: {
+      border: 0,
+    },
   },
   '.nweetitem__nweet': {
     fontSize: '$4',
@@ -376,13 +386,52 @@ export const NweetItemBox = styled('div', {
     fd: 'column',
     bs: 'rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px',
   },
+  '.dropdown-menu__item': {
+    display: 'flex',
+    fd: 'row',
+    ai: 'center',
+    px: 16,
+    py: 12,
+    fontWeight: 'bold',
+    svg: {
+      mr: 6,
+    },
+    '&--red': {
+      color: '$tomatoA10',
+    },
+    '&:hover': {
+      bc: '$mauve3',
+    },
+  },
 });
 
 export const SocialBox = styled('div', {
+  my:20,
   button: {
-    m:'7px 0'
-  }  
+    m: '7px 0',
+  },
 });
+
+export const SignUpBox = styled('div', {
+  m:'20px auto',
+  width: 300,
+  form: {
+    display: 'flex',
+    fd: 'column',
+    input: {
+      mb: 8,
+      border: '1px solid rgb(218, 220, 224)',
+      br: '$pill',
+      height: 40,
+      px:10
+    }
+  },
+  button: {
+    m: '7px 0',
+    py:0
+  },
+});
+
 
 export const Main = styled('main', {
   flex: 1,
@@ -402,23 +451,150 @@ export const AuthWrap = styled('div', {
   flex: 1,
   borderLeft: '1px solid rgb(239, 243, 244)',
   borderRight: '1px solid rgb(239, 243, 244)',
+  '.auth-nwitter': {
+    mt: 20,
+    bt: '1px solid #000',
+  },
 });
 
-export const HeaderWrap = styled('header', {  
-  '.header__align': {    
-    ai:'center',
-    borderBottom: '1px solid rgb(239, 243, 244)',  
+export const HeaderWrap = styled('header', {
+  '.header__align': {
+    ai: 'center',
+    borderBottom: '1px solid rgb(239, 243, 244)',
     display: 'flex',
     height: 53,
     px: 16,
   },
   '.header__display-name': {
-    fontSize:'$6'
-  }
+    fontSize: '$6',
+    display: 'flex',
+    fd: 'column',
+  },
+  '.header__nwitter': {
+    fontSize: '$2',
+    color: '$gray9',
+    fontWeight: 'normal',
+    lh: 1.5,
+  },
+  '.header__inner': {
+    px: 16,
+    display: 'flex',
+    fd: 'column',
+    pt: 12,
+    position: 'relative',
+  },
+  '.header__cover': {
+    bc: '$gray5',
+    height: 200,
+    backgroundPosition: 'center',
+    backgroundSize:'cover'
+  },
+  '.header__avatar': {
+    position: 'absolute',
+    top: '-50%',
+  },
+  '.header__link': {
+    display: 'inline-flex',
+    as: 'end',
+    mb: 60,
+  },
+  '.header__displayName': {
+    lh: 1.5,
+    fontSize: '$6',
+  },
+  '.header__createDate': {
+    fontSize: '$4',
+    color: '$gray11',
+    display: 'flex',
+    ai: 'center',
+    svg: {
+      mr: 4,
+    },
+  },
 });
 
 export const ProfileWrap = styled('div', {
   flex: 1,
-  borderLeft: '1px solid rgb(239, 243, 244)',
-  borderRight: '1px solid rgb(239, 243, 244)',
+  '.profile__inner': {
+    position: 'relative',
+    px: 16,
+    pt: 60,
+    display: 'flex',
+    fd:'column'
+  },
+  '.profile__imgbox': {
+    position: 'relative',
+    overflow: 'hidden',
+    '.file_btn': {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%,-50%) ',
+      zIndex: 3,
+    },
+    '&::before': {
+      content: '',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      right: 0,
+      position: 'absolute',
+      zIndex: 2,
+      bc: '$blackA11',
+    },
+    '.img_box': {
+      m: 0,
+      height: '100%',
+      img: {
+        height: '100%',
+        objectFit: 'cover',
+      },
+    },
+  },
+  '.profile__cover': {
+    bc: '$gray5',
+    height: 200,
+  },
+  '.profile__avatar': {
+    position: 'absolute',
+    top: -50,
+    width: 100,
+    height: 100,
+    br: '$round',
+    zIndex: 2,
+  },
+  '.profile__input': {
+    br: '$pill',
+    border: '1px solid #dadce0',
+    height: 40,
+    mb: 8,
+    px:12
+  }
 });
+
+
+export const SignModalLine = styled('div', {
+  m: '10px auto 25px',
+  position:'relative', 
+  width:300,
+  '&::before': {
+    position: 'absolute',
+    bc: '$gray6',
+    left: 0,
+    right: 0,
+    height: 1,
+    content: '',
+    top:'50%'
+  },
+  span: {
+    bc:'white',
+    px: 12,
+    position:'relative', 
+  }
+});
+
+
+export const MyInfoWrap = styled('div', {
+  mt:'auto'
+});
+

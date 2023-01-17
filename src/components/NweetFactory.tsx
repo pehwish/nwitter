@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form';
 import { Avatar } from 'components/Avatar';
 import FileButton from 'components/FileButton';
 import ImagesBox from 'components/ImagesBox';
-import { NweetFactoryProps, onSubmitData } from 'types';
+import { StoreType, onSubmitData } from 'types';
 import { Button, NweetForm, NweetInput } from 'styles';
+import useStore from 'store';
 
+const NweetFactory = () => {
+  const { userObj }: StoreType = useStore();
 
-const NweetFactory = ({ userObj }: NweetFactoryProps) => {
   const {
     register,
     handleSubmit,
@@ -50,7 +52,6 @@ const NweetFactory = ({ userObj }: NweetFactoryProps) => {
   return (
     <NweetForm onSubmit={handleSubmit(onSubmit)}>
       {userObj && <Avatar src={userObj.photoURL || userObj.displayName} size={4} />}
-
       <div className="nweet-from__aligner">
         <NweetInput
           type="text"

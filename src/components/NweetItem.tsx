@@ -3,14 +3,17 @@ import React, { useState } from 'react';
 import { Avatar } from './Avatar';
 import ImagesBox from './ImagesBox';
 import { timeForToday } from 'utills/date';
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import {
+  DotsHorizontalIcon,
+  Pencil1Icon,
+  TrashIcon,
+} from '@radix-ui/react-icons';
 import { NweetItemProps } from 'types';
 import { IconButton, NweetItemBox } from 'styles';
 
-
 const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
   const [isOpened, setIsOpend] = useState(false);
-  
+
   const onDeleteClick = async () => {
     const ok = window.confirm('Are you sure you want to delete this nweet?');
     if (ok) {
@@ -26,27 +29,41 @@ const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
   return (
     <NweetItemBox>
       <Avatar src={nweetObj.photoURL || nweetObj.displayName} size={4} />
-      <div className="nweetitem__content">
-        <div className="nweetitem__header">
-          <h3 className="nweetitem__name">{nweetObj.displayName}</h3>
-          <span className="nweetitem__date">{timeForToday(nweetObj.createdAt)}</span>
+      <div className='nweetitem__content'>
+        <div className='nweetitem__header'>
+          <h3 className='nweetitem__name'>{nweetObj.displayName}</h3>
+          <span className='nweetitem__date'>
+            {timeForToday(nweetObj.createdAt)}
+          </span>
 
           {isOwner && (
-            <div className="nweetitem__menu">
+            <div className='nweetitem__menu'>
               <IconButton onClick={toggleMenu}>
                 <DotsHorizontalIcon />
               </IconButton>
               {isOpened && (
-                <div className="dropdown-menu">
-                  <button onClick={onDeleteClick}>Delete Nweet</button>
-                  <button onClick={toggleEditing}>Edit Nweet</button>
+                <div className='dropdown-menu'>
+                  <button
+                    onClick={onDeleteClick}
+                    className='dropdown-menu__item dropdown-menu__item--red'
+                  >
+                    <TrashIcon></TrashIcon>삭제하기
+                  </button>
+                  <button
+                    onClick={toggleEditing}
+                    className='dropdown-menu__item'
+                  >
+                    <Pencil1Icon></Pencil1Icon>수정하기
+                  </button>
                 </div>
               )}
             </div>
           )}
         </div>
-        <h4 className="nweetitem__nweet">{nweetObj.text}</h4>
-        {nweetObj.attachmentUrl && <ImagesBox attachment={nweetObj.attachmentUrl} />}
+        <h4 className='nweetitem__nweet'>{nweetObj.text}</h4>
+        {nweetObj.attachmentUrl && (
+          <ImagesBox attachment={nweetObj.attachmentUrl} />
+        )}
       </div>
     </NweetItemBox>
   );

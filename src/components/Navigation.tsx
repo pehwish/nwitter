@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { StoreType } from 'types';
 import useStore from 'store';
 import { Nav } from 'styles';
+import MyInfo from './MyInfo';
 
 
 const Navigation = () => {
@@ -32,6 +33,10 @@ const Navigation = () => {
           </li>
         )}
       </ul>
+
+      
+      <MyInfo />
+
     </Nav>
   )
 };

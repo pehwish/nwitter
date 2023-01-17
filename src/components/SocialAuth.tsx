@@ -1,13 +1,16 @@
 import React from 'react';
 import { authService, firebaseInstance } from 'fbase';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { SocialAuthProps } from 'types';
+import { SocialAuthProps, StoreType } from 'types';
 import { SocialBox, IconButton } from 'styles';
+import { createAt } from 'utills/date';
+import useStore from 'store';
 
 
 
-
-const SocialAuth = ({ isNewAccount = false}:SocialAuthProps) => {
+const SocialAuth = ({ isNewAccount = false }: SocialAuthProps) => {
+  const { createUser }: StoreType = useStore();
+  
 
   const onSocialClick = async (socialType: string):Promise<void> => {
 
@@ -18,7 +21,11 @@ const SocialAuth = ({ isNewAccount = false}:SocialAuthProps) => {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
     if (provider) {
-      await authService.signInWithPopup(provider);    
+     const response =  await authService.signInWithPopup(provider);    
+      console.log(response);
+      if (response?.user?.uid) { 
+        await createUser({ displayName: response?.user?.displayName || '', uid : response?.user?.uid, createdAt: createAt(), photoURL:response?.user?.uid, email: response?.user?.email })
+      }
     }
   };
 

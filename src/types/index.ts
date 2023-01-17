@@ -1,10 +1,19 @@
 import { ReactElement, ReactNode } from 'react';
 
 export interface userType {
-  displayName?: string;
-  photoURL?: string;
   uid: string;
-  updateProfile: (data: any) => any;
+  createdAt?: string;
+  displayName: string;
+  photoURL?: string;
+  coverImgURL?: string;  
+  id?: string;
+  email: string;
+}
+
+export interface updateUserType { 
+  displayName: string;
+  photoURL?: string;
+  coverImgURL?: string;
 }
 
 export interface NweetType {
@@ -20,19 +29,20 @@ export interface NweetType {
 export interface AuthFormData {
   email: string;
   password: string;
-  displayName?:string;
-};
-
+  displayName?: string;
+}
 
 export interface StoreType {
   isLoggedIn: boolean;
-  toggleIsLogin: (isLogin: boolean) => void;  
+  toggleIsLogin: (isLogin: boolean) => void;
   userObj: userType | null;
-  refreshUser: () => void;
   onAuthState: () => void;
+  createUser: (userObj:userType) => void;
+  getUser: (uid:string) => void;
+  setUser: (id:string, uid:string, userObj:updateUserType) => void;
 }
 
-export interface AuthFormProps { 
+export interface AuthFormProps {
   isNewAccount?: boolean;
 }
 
@@ -50,10 +60,10 @@ export interface ImagesBoxProps {
   attachment: string;
   onClearAttachment?: () => void;
 }
-export interface ModalProps { 
+export interface ModalProps {
   children: ReactNode | ReactElement;
   title?: string;
-  button:ReactNode | ReactElement;
+  button: ReactNode | ReactElement;
 }
 
 export interface NweetProps {
@@ -61,23 +71,20 @@ export interface NweetProps {
   isOwner: boolean;
 }
 
-
 export type onSubmitData = {
   nweet: string;
 };
 
-export interface NweetFactoryProps {
-  userObj?: userType;
-}
 export interface NweetItemProps {
   nweetObj: NweetType;
   isOwner: boolean;
   toggleEditing: () => void;
 }
-export interface SocialAuthProps { 
+export interface SocialAuthProps {
   isNewAccount?: boolean;
 }
 
-export interface HeaderProps{ 
+export interface HeaderProps {
   children?: ReactElement | ReactNode;
+  nwitterCnt?: number;
 }

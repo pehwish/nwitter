@@ -3,7 +3,6 @@ import { CameraIcon } from '@radix-ui/react-icons';
 import { FileButtonProps } from 'types';
 import { FileButtonWrap } from 'styles';
 
-
 const FileButton = ({ onChange }: FileButtonProps) => {
   const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -28,9 +27,14 @@ const FileButton = ({ onChange }: FileButtonProps) => {
   };
 
   return (
-    <FileButtonWrap>
-      <input type="file" accept="image/*" onChange={onFileChange} id="file-input" />
-      <label htmlFor="file-input">
+    <FileButtonWrap className='file_btn'>      
+      <label>
+        <input
+          type='file'
+          accept='image/*'
+          onChange={onFileChange}
+          
+        />
         <CameraIcon scale={2} />
       </label>
     </FileButtonWrap>

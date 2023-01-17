@@ -220,6 +220,7 @@ export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes
         7: '45px',
         8: '65px',
         9: '80px',
+        10: '145px',
       },
 
       fontSizes: {
