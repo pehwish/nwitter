@@ -3,16 +3,16 @@ import { ReactElement, ReactNode } from 'react';
 export interface userType {
   uid: string;
   createdAt?: string;
-  displayName: string;
-  photoURL?: string;
+  displayName: string | null;
+  photoURL: string | null;
   coverImgURL?: string;  
   id?: string;
-  email: string;
+  email: string | null;
 }
 
 export interface updateUserType { 
-  displayName: string;
-  photoURL?: string;
+  displayName: string | null;
+  photoURL?: string | null;
   coverImgURL?: string;
 }
 
@@ -34,12 +34,13 @@ export interface AuthFormData {
 
 export interface StoreType {
   isLoggedIn: boolean;
-  toggleIsLogin: (isLogin: boolean) => void;
   userObj: userType | null;
-  onAuthState: () => void;
+  isLoading: boolean;
+  toggleLoading: (isVisibleLoading:boolean) => void;
+  logout: () => void;
   createUser: (userObj:userType) => void;
-  getUser: (uid:string) => void;
-  setUser: (id:string, uid:string, userObj:updateUserType) => void;
+  getUser: (userObj:userType) => void;
+  setUser: (id:string, userObj:updateUserType) => void;
 }
 
 export interface AuthFormProps {
@@ -87,4 +88,8 @@ export interface SocialAuthProps {
 export interface HeaderProps {
   children?: ReactElement | ReactNode;
   nwitterCnt?: number;
+}
+
+export interface LoadingProps { 
+  isLoading?: boolean;
 }

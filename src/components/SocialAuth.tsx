@@ -9,7 +9,6 @@ import useStore from 'store';
 
 
 const SocialAuth = ({ isNewAccount = false }: SocialAuthProps) => {
-  const { createUser }: StoreType = useStore();
 
 
   const onSocialClick = async (socialType: string): Promise<void> => {
@@ -21,11 +20,8 @@ const SocialAuth = ({ isNewAccount = false }: SocialAuthProps) => {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
     if (provider) {
-      const response = await authService.signInWithPopup(provider);
-      console.log(response);
-      if (response?.user?.uid) {
-        await createUser({ displayName: response?.user?.displayName || '', uid: response?.user?.uid, createdAt: createAt(), photoURL: response?.user?.uid, email: response?.user?.email || '' })
-      }
+      await authService.signInWithPopup(provider);
+     
     }
   };
 

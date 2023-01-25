@@ -1,29 +1,23 @@
 import React, { ChangeEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useHistory } from 'react-router-dom';
 import Modal from './Modal';
 import { Trigger } from '@radix-ui/react-dialog';
 import { Button, ProfileWrap } from 'styles';
 import useStore from 'store';
 import { StoreType, updateUserType } from 'types';
-import { authService, storageService } from 'fbase';
+import {  storageService } from 'fbase';
 import ImagesBox from './ImagesBox';
 import FileButton from './FileButton';
 
 const ProfileModal = () => {
-  const history = useHistory();
-  const { userObj, setUser }: StoreType = useStore();
+  const { userObj, setUser, toggleLoading }: StoreType = useStore();
   const [newDisplayName, setNewDisplayName] = useState(
     userObj?.displayName || ''
   );
   const [photoURL, setPhotoUrl] = useState(userObj?.photoURL || '');
   const [coverImgURL, setCoverImgURL] = useState(userObj?.coverImgURL || '');
 
-  const onLogOutClick = () => {
-    authService.signOut();
-    history.push('/');
-  };
-
+ 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
@@ -49,6 +43,7 @@ const ProfileModal = () => {
 
   const onSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    toggleLoading(true);
     if (userObj && userObj.id) {
       let displayName = userObj.displayName;
       let newPhotoURL = '';
@@ -76,7 +71,9 @@ const ProfileModal = () => {
         updateNewProfile.coverImgURL = newCoverImgURL;
       }
 
-      await setUser(userObj.id, userObj.uid, updateNewProfile);
+      await setUser(userObj.id, updateNewProfile);
+
+      toggleLoading(false);
      
     }
   };
@@ -134,8 +131,7 @@ const ProfileModal = () => {
             <Button type='submit' color='black'>저장</Button>
           </div>
         </form>
-      </ProfileWrap>
-      <Button onClick={onLogOutClick}>로그아웃</Button>
+      </ProfileWrap>      
     </Modal>
   );
 };

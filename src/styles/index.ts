@@ -1,5 +1,5 @@
 import { Overlay, Content, Title, Close } from '@radix-ui/react-dialog';
-import { styled } from '../stitches.config';
+import { keyframes, styled } from '../stitches.config';
 
 export const Box = styled('div', {
   // Reset
@@ -269,8 +269,6 @@ export const ModalBtnClose = styled(Close, {
 });
 
 export const Nav = styled('nav', {
-  display: 'flex',
-  fd:'column',
   width: 88,
   '@bp3': {
     width: 275,
@@ -374,18 +372,19 @@ export const NweetItemBox = styled('div', {
     fontSize: '$4',
     fontWeight: '400',
     mb: 12,
-  },
-  '.dropdown-menu': {
-    position: 'absolute',
-    bc: '#fff',
-    zIndex: 1,
-    right: 0,
-    width: 200,
-    br: '$2',
-    display: 'flex',
-    fd: 'column',
-    bs: 'rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px',
-  },
+  },  
+});
+
+export const DropdownMenu = styled('div', { 
+  position: 'absolute',
+  bc: '#fff',
+  zIndex: 1,
+  right: 0,
+  width: 200,
+  br: '$2',
+  display: 'flex',
+  fd: 'column',
+  bs: 'rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px',  
   '.dropdown-menu__item': {
     display: 'flex',
     fd: 'row',
@@ -403,7 +402,7 @@ export const NweetItemBox = styled('div', {
       bc: '$mauve3',
     },
   },
-});
+})
 
 export const SocialBox = styled('div', {
   my:20,
@@ -531,17 +530,7 @@ export const ProfileWrap = styled('div', {
       left: '50%',
       transform: 'translate(-50%,-50%) ',
       zIndex: 3,
-    },
-    '&::before': {
-      content: '',
-      left: 0,
-      top: 0,
-      bottom: 0,
-      right: 0,
-      position: 'absolute',
-      zIndex: 2,
-      bc: '$blackA11',
-    },
+    },    
     '.img_box': {
       m: 0,
       height: '100%',
@@ -549,11 +538,27 @@ export const ProfileWrap = styled('div', {
         height: '100%',
         objectFit: 'cover',
       },
+      '&::before': {
+        content: '',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
+        position: 'absolute',
+        zIndex: 2,
+        bc: '$blackA11',
+      },
     },
+    '.nweet-attachment__btn-clear': {
+      zIndex: 3,
+      width: 28,
+      height: 28
+    }
   },
   '.profile__cover': {
     bc: '$gray5',
     height: 200,
+    borderRadius:'$4'
   },
   '.profile__avatar': {
     position: 'absolute',
@@ -595,6 +600,97 @@ export const SignModalLine = styled('div', {
 
 
 export const MyInfoWrap = styled('div', {
-  mt:'auto'
+  mb:12,
+  mx:12,
+  py: 20,
+  px: 12,
+  position: 'fixed',
+  bottom: 0,
+  width:250,
+  borderRadius: '$pill',
+  '&:hover': {
+    bc: '$mauve3',
+  },
+  '.myinfo__aligner': {
+    display: 'flex',
+    fd: 'row',
+    position:'relative',
+    '.myinfo__align': {
+      display: 'flex',
+      fd: 'column',
+      mx: 12,
+      em: {
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        display: 'block',
+        mb:4
+      },
+      span: {
+        fontSize: 12,
+        color: '$gray11',
+        display: 'block',
+        maxWidth: 125,
+        overflow: 'hidden',
+        textOverflow:"ellipsis"
+        
+      }
+    },    
+    '.myinfo__menu': {
+      border: 0,
+      ml:'auto'
+    }
+  },
+  '.dropdown-menu': {
+    top:-50
+  }
+  
 });
 
+const ldsFacebook = keyframes({
+	'0%': { top: 8,
+    height: 64},
+	'50%, 100%': {  top: 24,
+    height: 32 },
+});
+
+
+
+export const LoadingWrap = styled('div', {
+   '.lds-facebook' : {
+    position: 'fixed',
+    zIndex: 1,
+    left: '50%',
+    top: '50%',
+    transform:'translate(-50%,-50%)',
+    width: 80,
+    height: 80,
+    div: {
+      display: 'inline-block',
+      position: 'absolute',
+      left: 8,
+      width: 16,
+      background: '#fff',
+      animation: `${ldsFacebook} 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite`,    
+      '&:nth-child(1)':{
+        left: 8,
+        animationDelay: '-0.24s'
+      },
+      '&:nth-child(2)': {
+        left: 32,
+        animationDelay: '-0.12s'
+      },
+      '&:nth-child(3)': {
+        left: 56,
+        animationDelay: 0
+      }
+    }
+  },
+  
+});
+
+
+export const Footer = styled('footer', {
+  m: '10px 0 0 20px',
+  fontSize:14
+
+})

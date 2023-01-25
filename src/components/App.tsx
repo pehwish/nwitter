@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react';
 import AppRouter from 'components/Router';
-import { Wrapper } from '../styles';
+import { Footer, Wrapper } from '../styles';
 import { StoreType } from 'types';
 import useStore from 'store';
+import { authService } from 'fbase';
+import Loading from './Loading';
 
 function App() {
-    const { onAuthState }:StoreType = useStore((state) => state);
+  const { getUser, logout, isLoading }:StoreType = useStore((state) => state);
 
   useEffect(() => {
-    onAuthState();
+    authService.onAuthStateChanged((user) => {          
+      if (user) {            
+        getUser(user);            
+        
+      } else {
+        logout();
+      }
+    });
    
   }, []);  
 
   return (
     <Wrapper>
       <AppRouter />
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
+      <Footer>&copy; {new Date().getFullYear()} Nwitter</Footer>
+      <Loading isLoading={isLoading} /> 
     </Wrapper>
   );
 }

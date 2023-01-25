@@ -51,7 +51,7 @@ const NweetFactory = () => {
 
   return (
     <NweetForm onSubmit={handleSubmit(onSubmit)}>
-      {userObj && <Avatar src={userObj.photoURL || userObj.displayName} size={4} />}
+      {userObj && <Avatar src={userObj.photoURL || userObj.displayName || ''} size={4} />}
       <div className="nweet-from__aligner">
         <NweetInput
           type="text"

@@ -18,6 +18,7 @@ const Auth = () => {
       dbService
         .collection('nweets')
         .where('creatorId', '==', userObj.uid)
+        .orderBy('createdAt', "desc")
         .onSnapshot((snapshot) => {
           const nweetArray = snapshot.docs.map((doc) => ({
             id: doc.id,
@@ -41,7 +42,7 @@ const Auth = () => {
             <div className='header__inner'>
               <div className='header__avatar'>
                 <Avatar
-                  src={userObj.photoURL || userObj.displayName}
+                  src={userObj?.photoURL || userObj?.displayName || ''}
                   size={7}
                 />
               </div>

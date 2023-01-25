@@ -9,7 +9,7 @@ import {
   TrashIcon,
 } from '@radix-ui/react-icons';
 import { NweetItemProps } from 'types';
-import { IconButton, NweetItemBox } from 'styles';
+import { DropdownMenu, IconButton, NweetItemBox } from 'styles';
 
 const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
   const [isOpened, setIsOpend] = useState(false);
@@ -42,20 +42,20 @@ const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
                 <DotsHorizontalIcon />
               </IconButton>
               {isOpened && (
-                <div className='dropdown-menu'>
+                <DropdownMenu>
                   <button
                     onClick={onDeleteClick}
                     className='dropdown-menu__item dropdown-menu__item--red'
                   >
-                    <TrashIcon></TrashIcon>삭제하기
+                    <TrashIcon />삭제하기
                   </button>
                   <button
                     onClick={toggleEditing}
                     className='dropdown-menu__item'
                   >
-                    <Pencil1Icon></Pencil1Icon>수정하기
+                    <Pencil1Icon />수정하기
                   </button>
-                </div>
+                </DropdownMenu>
               )}
             </div>
           )}
