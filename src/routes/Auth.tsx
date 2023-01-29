@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { AuthWrap } from 'styles';
-import { NweetType, StoreType } from 'types';
-import useStore from 'store';
-import Header from 'components/Header';
-import { Avatar } from 'components/Avatar';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { dbService } from 'fbase';
+import { Avatar } from 'components/Avatar';
+import Header from 'components/Header';
 import Nweet from 'components/Nweet';
 import ProfileModal from 'components/ProfileModal';
+import { dbService } from 'fbase';
+import React, { useEffect, useState } from 'react';
+import useStore from 'store';
+import { AuthWrap } from 'styles';
+import { NweetType, StoreType } from 'types';
 
 const Auth = () => {
   const { userObj }: StoreType = useStore();
@@ -28,7 +28,7 @@ const Auth = () => {
           setNweets(nweetArray as NweetType[]);
         });
     }
-  }, []);
+  }, [userObj]);
 
   return (
     <AuthWrap>

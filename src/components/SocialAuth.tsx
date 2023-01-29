@@ -1,10 +1,8 @@
-import React from 'react';
-import { authService, firebaseInstance } from 'fbase';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { SocialAuthProps, StoreType } from 'types';
-import { SocialBox, IconButton } from 'styles';
-import { createAt } from 'utills/date';
-import useStore from 'store';
+import { authService, firebaseInstance } from 'fbase';
+import React from 'react';
+import { IconButton, SocialBox } from 'styles';
+import { SocialAuthProps } from 'types';
 
 
 

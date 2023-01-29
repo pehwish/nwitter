@@ -1,13 +1,13 @@
 import React from 'react';
-import { DropdownMenu, IconButton, MyInfoWrap } from 'styles'
+import { DropdownMenu, IconButton, MyInfoWrap } from 'styles';
 
 import { useHistory } from 'react-router-dom';
-import { StoreType } from 'types';
 import useStore from 'store';
+import { StoreType } from 'types';
 
-import { Root, Trigger, Portal, Content } from '@radix-ui/react-dropdown-menu';
-import { Avatar } from 'components/Avatar';
+import { Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { Avatar } from 'components/Avatar';
 import { authService } from 'fbase';
 
 
