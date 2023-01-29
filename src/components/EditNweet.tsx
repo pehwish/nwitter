@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { dbService } from 'fbase';
 import { EditNweetProps } from 'types';
+import { Button, EditWrap, NweetInput } from 'styles';
 
 
 const EditNweet = ({ id, originText, toggleEditing }: EditNweetProps) => {
@@ -23,19 +24,23 @@ const EditNweet = ({ id, originText, toggleEditing }: EditNweetProps) => {
   };
 
   return (
-    <>
+    <EditWrap>
       <form onSubmit={onSubmit}>
-        <input
+        <NweetInput
           type="text"
           placeholder="Edit your nweet"
           value={newNweet}
           required
           onChange={onChange}
+          className="form__input"
         />
-        <input type="submit" value="Update Nweet" />
+        <div className='form__buttons'>
+          <Button type="submit" color={'blue'} >수정</Button>
+          <Button onClick={toggleEditing}>취소</Button>
+          </div>
       </form>
-      <button onClick={toggleEditing}>취소</button>
-    </>
+     
+    </EditWrap>
   );
 };
 

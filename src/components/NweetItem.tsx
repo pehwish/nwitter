@@ -1,5 +1,5 @@
 import { dbService, storageService } from 'fbase';
-import React, { useState } from 'react';
+import React from 'react';
 import { Avatar } from './Avatar';
 import ImagesBox from './ImagesBox';
 import { timeForToday } from 'utills/date';
@@ -9,13 +9,13 @@ import {
   TrashIcon,
 } from '@radix-ui/react-icons';
 import { NweetItemProps } from 'types';
+import { Root, Trigger, Portal, Content } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenu, IconButton, NweetItemBox } from 'styles';
 
 const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
-  const [isOpened, setIsOpend] = useState(false);
 
   const onDeleteClick = async () => {
-    const ok = window.confirm('Are you sure you want to delete this nweet?');
+    const ok = window.confirm('트윗을 삭제할까요?');
     if (ok) {
       await dbService.doc(`nweets/${nweetObj.id}`).delete();
       if (nweetObj.attachmentUrl !== '') {
@@ -24,7 +24,6 @@ const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
     }
   };
 
-  const toggleMenu = () => setIsOpend((prev) => !prev);
 
   return (
     <NweetItemBox>
@@ -37,27 +36,33 @@ const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
           </span>
 
           {isOwner && (
-            <div className='nweetitem__menu'>
-              <IconButton onClick={toggleMenu}>
-                <DotsHorizontalIcon />
-              </IconButton>
-              {isOpened && (
-                <DropdownMenu>
-                  <button
-                    onClick={onDeleteClick}
-                    className='dropdown-menu__item dropdown-menu__item--red'
-                  >
-                    <TrashIcon />삭제하기
-                  </button>
-                  <button
-                    onClick={toggleEditing}
-                    className='dropdown-menu__item'
-                  >
-                    <Pencil1Icon />수정하기
-                  </button>
-                </DropdownMenu>
-              )}
-            </div>
+            <Root>
+              <div className='nweetitem__menu'>
+                <Trigger asChild>
+                  <IconButton>
+                    <DotsHorizontalIcon />
+                  </IconButton>
+                </Trigger>
+                <Portal>
+                  <Content>
+                    <DropdownMenu>
+                      <button
+                        onClick={onDeleteClick}
+                        className='dropdown-menu__item dropdown-menu__item--red'
+                      >
+                        <TrashIcon />삭제하기
+                      </button>
+                      <button
+                        onClick={toggleEditing}
+                        className='dropdown-menu__item'
+                      >
+                        <Pencil1Icon />수정하기
+                      </button>
+                  </DropdownMenu>
+                  </Content>
+                </Portal>
+              </div>
+            </Root>
           )}
         </div>
         <h4 className='nweetitem__nweet'>{nweetObj.text}</h4>

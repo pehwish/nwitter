@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { DropdownMenu, IconButton, MyInfoWrap } from 'styles'
 
 import { useHistory } from 'react-router-dom';
 import { StoreType } from 'types';
 import useStore from 'store';
 
+import { Root, Trigger, Portal, Content } from '@radix-ui/react-dropdown-menu';
 import { Avatar } from 'components/Avatar';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { authService } from 'fbase';
@@ -12,10 +13,7 @@ import { authService } from 'fbase';
 
 const MyInfo = () => {
   const { userObj }: StoreType = useStore();
-  const [isOpened, setIsOpend] = useState(false);
   const history = useHistory();
-  const toggleMenu = () => setIsOpend((prev) => !prev);
-
 
   
   const onLogOutClick = () => {
@@ -40,22 +38,27 @@ const MyInfo = () => {
               { userObj.email}
             </span>
           </div>
-          <IconButton onClick={toggleMenu} className='myinfo__menu'>
-            <DotsHorizontalIcon />
-          </IconButton>
-          {isOpened && (
-            <DropdownMenu className='dropdown-menu'>
-              <button
-                onClick={onLogOutClick}
-                className='dropdown-menu__item'
-              >
-                로그아웃
-              </button>               
-            </DropdownMenu>
-          )}
+          <Root>
+            <Trigger asChild>
+                <IconButton className='myinfo__menu'>
+                  <DotsHorizontalIcon />
+                </IconButton>
+            </Trigger>
+            <Portal>
+              <Content>
+                <DropdownMenu className='dropdown-menu'>
+                  <button
+                    onClick={onLogOutClick}
+                    className='dropdown-menu__item'
+                  >
+                    로그아웃
+                  </button>               
+                </DropdownMenu>
+              </Content>
+            </Portal>
+          </Root>
        </div>
-    }
-       
+    }  
     </MyInfoWrap>
   )
 }

@@ -10,7 +10,7 @@ import { Button, NweetForm, NweetInput } from 'styles';
 import useStore from 'store';
 
 const NweetFactory = () => {
-  const { userObj }: StoreType = useStore();
+  const { userObj, toggleLoading  }: StoreType = useStore();
 
   const {
     register,
@@ -24,6 +24,7 @@ const NweetFactory = () => {
     let attachmentUrl = '';
     if (userObj) {
       if (attachment !== '') {
+        toggleLoading(true);
         const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
         const response = await attachmentRef.putString(attachment, 'data_url');
         attachmentUrl = await response.ref.getDownloadURL();
@@ -40,6 +41,7 @@ const NweetFactory = () => {
       await dbService.collection('nweets').add(nweetObj);
       setValue('nweet', '');
       setAttachment('');
+      toggleLoading(false);
     }
   };
 

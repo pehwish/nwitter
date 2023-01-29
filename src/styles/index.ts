@@ -694,3 +694,27 @@ export const Footer = styled('footer', {
   fontSize:14
 
 })
+
+
+export const EditWrap = styled('div', {
+  flex: 1,
+  fd: 'column',
+  mx: 16,
+  py: 4,
+  '.form__input': {
+    outline: 0,
+    width: '100%',
+    '&:focus': {
+      borderBottom: `1px solid $blue`
+      
+    }
+  },
+  '.form__buttons': {
+    fontSize: '$6',
+    py: 16,
+    textAlign:'right',
+    'button+button': {
+      ml:6
+    }
+  },
+});
