@@ -4,7 +4,7 @@ import EditNweet from './EditNweet';
 import NweetItem from './NweetItem';
 
 
-const Nweet = ({ nweetObj, isOwner = false }: NweetProps) => {
+const Nweet = ({ nweetObj, isOwner = false, isInfo=false }: NweetProps) => {
   const [editing, setEditing] = useState(false);
 
   const toggleEditing = () => setEditing((prev) => !prev);
@@ -14,7 +14,7 @@ const Nweet = ({ nweetObj, isOwner = false }: NweetProps) => {
       {editing ? (
         <EditNweet id={nweetObj.id} originText={nweetObj.text} toggleEditing={toggleEditing} />
       ) : (
-        <NweetItem nweetObj={nweetObj} isOwner={isOwner} toggleEditing={toggleEditing} />
+          <NweetItem nweetObj={nweetObj} isOwner={isOwner} isInfo={ isInfo} toggleEditing={toggleEditing} />
       )}
     </div>
   );

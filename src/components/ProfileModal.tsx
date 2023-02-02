@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Modal from './Modal';
 import { Trigger } from '@radix-ui/react-dialog';
@@ -26,6 +26,7 @@ const ProfileModal = () => {
   };
 
   const downloadUrl = async (imgUrl: string) => { 
+    toggleLoading(true);
     if (userObj) { 
       const attachmentRef = storageService
       .ref()
@@ -43,7 +44,7 @@ const ProfileModal = () => {
 
   const onSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    toggleLoading(true);
+    
     if (userObj && userObj.id) {
       let displayName = userObj.displayName;
       let newPhotoURL = '';
@@ -52,8 +53,7 @@ const ProfileModal = () => {
       if (userObj.displayName !== newDisplayName) {
         displayName = newDisplayName;
       }
-
-      if (photoURL !== '' && photoURL !== userObj?.photoURL) {      
+      if (photoURL !== '' && photoURL !== userObj?.photoURL) {            
         newPhotoURL = await downloadUrl(photoURL);                
       }
 
@@ -71,10 +71,13 @@ const ProfileModal = () => {
         updateNewProfile.coverImgURL = newCoverImgURL;
       }
 
-      await setUser(userObj.id, updateNewProfile);
-
-      toggleLoading(false);
-     
+      try {
+        await setUser(userObj.id, updateNewProfile);
+      } catch (e) {
+        console.error(e)
+      } finally { 
+        toggleLoading(false);
+      }     
     }
   };
 
@@ -90,6 +93,10 @@ const ProfileModal = () => {
   const onClearPhotoURL = () => setPhotoUrl('');
 
   const onClearCpverURL = () => setCoverImgURL('');
+
+  useEffect(() => { 
+    toggleLoading(false);
+  },[])
 
   return (
     <Modal

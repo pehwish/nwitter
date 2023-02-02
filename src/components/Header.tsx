@@ -5,8 +5,7 @@ import useStore from 'store';
 import { useHistory } from 'react-router-dom';
 import { HeaderWrap } from 'styles';
 
-const Header = ({ children, nwitterCnt = 0 }:HeaderProps) => {
-  const { userObj }: StoreType = useStore();
+const Header = ({ children, displayName ='', nwitterCnt = 0 }:HeaderProps) => {
   const history = useHistory();
 
   const onClick = () => {   
@@ -20,7 +19,7 @@ const Header = ({ children, nwitterCnt = 0 }:HeaderProps) => {
             <ArrowLeftIcon></ArrowLeftIcon>
         </button>
         <h2 className='header__display-name'>
-          {userObj?.displayName || ''}       
+          {displayName}       
           {nwitterCnt > 0 && <span className='header__nwitter'> {nwitterCnt} 트윗</span>}
         </h2>
       </div>        

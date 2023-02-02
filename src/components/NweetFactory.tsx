@@ -1,5 +1,5 @@
 import { dbService, storageService } from 'fbase';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { Avatar } from 'components/Avatar';
@@ -37,11 +37,17 @@ const NweetFactory = () => {
         photoURL: userObj.photoURL,
         attachmentUrl,
       };
+      try {
+        await dbService.collection('nweets').add(nweetObj);
+        setValue('nweet', '');
+        setAttachment('');
+      } catch (e) {
+        console.error(e)
+      } finally {       
+        toggleLoading(false);
+      }
 
-      await dbService.collection('nweets').add(nweetObj);
-      setValue('nweet', '');
-      setAttachment('');
-      toggleLoading(false);
+
     }
   };
 
@@ -50,6 +56,11 @@ const NweetFactory = () => {
   };
 
   const onClearAttachment = () => setAttachment('');
+
+  useEffect(() => { 
+      
+    toggleLoading(false);
+  },[])
 
   return (
     <NweetForm onSubmit={handleSubmit(onSubmit)}>

@@ -353,6 +353,10 @@ export const NweetItemBox = styled('div', {
     fd: 'row',
     fontSize: '$3',
     lh: '20px',
+    a: {
+      textDecoration: 'none',
+      color:'$mauve12',
+    }
   },
   '.nweetitem__date': {
     color: '$gray9',
@@ -482,6 +486,9 @@ export const HeaderWrap = styled('header', {
     pt: 12,
     position: 'relative',
   },
+  '.header__info': {
+    m:'80px 0 15px'
+  },
   '.header__cover': {
     bc: '$gray5',
     height: 200,
@@ -495,7 +502,8 @@ export const HeaderWrap = styled('header', {
   '.header__link': {
     display: 'inline-flex',
     as: 'end',
-    mb: 60,
+    position: 'absolute',
+    
   },
   '.header__displayName': {
     lh: 1.5,

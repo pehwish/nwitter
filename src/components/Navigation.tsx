@@ -26,7 +26,7 @@ const Navigation = () => {
         </li>
         {userObj && (
           <li>
-            <Link to="/myPage" className='nav-link'>
+            <Link to={`/myPage/${userObj.uid}`} className='nav-link'>
               <PersonIcon />
               <span>프로필</span>
             </Link>

@@ -70,6 +70,7 @@ export interface ModalProps {
 export interface NweetProps {
   nweetObj: NweetType;
   isOwner: boolean;
+  isInfo: boolean;
 }
 
 export type onSubmitData = {
@@ -79,6 +80,7 @@ export type onSubmitData = {
 export interface NweetItemProps {
   nweetObj: NweetType;
   isOwner: boolean;
+  isInfo: boolean;
   toggleEditing: () => void;
 }
 export interface SocialAuthProps {
@@ -88,6 +90,7 @@ export interface SocialAuthProps {
 export interface HeaderProps {
   children?: ReactElement | ReactNode;
   nwitterCnt?: number;
+  displayName?: string;
 }
 
 export interface LoadingProps { 

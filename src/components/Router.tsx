@@ -18,7 +18,7 @@ const AppRouter = () => {
           <Home />
         </Route>
         {userObj && (
-          <Route exact path='/myPage'>
+          <Route path='/myPage/:uid'>
             <Auth />
           </Route>
         )}

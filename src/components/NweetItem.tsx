@@ -11,8 +11,9 @@ import {
 import { NweetItemProps } from 'types';
 import { Root, Trigger, Portal, Content } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenu, IconButton, NweetItemBox } from 'styles';
+import { Link } from 'react-router-dom';
 
-const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
+const NweetItem = ({ nweetObj, isOwner, isInfo = false, toggleEditing }: NweetItemProps) => {
 
   const onDeleteClick = async () => {
     const ok = window.confirm('트윗을 삭제할까요?');
@@ -30,7 +31,13 @@ const NweetItem = ({ nweetObj, isOwner, toggleEditing }: NweetItemProps) => {
       <Avatar src={nweetObj.photoURL || nweetObj.displayName} size={4} />
       <div className='nweetitem__content'>
         <div className='nweetitem__header'>
-          <h3 className='nweetitem__name'>{nweetObj.displayName}</h3>
+          {isInfo ?
+            <h3 className='nweetitem__name'>{nweetObj.displayName}</h3> :
+            <Link to={`myPage/${nweetObj.creatorId}`}>
+              <h3 className='nweetitem__name'>{nweetObj.displayName}</h3>
+            </Link>
+          }
+          
           <span className='nweetitem__date'>
             {timeForToday(nweetObj.createdAt)}
           </span>
